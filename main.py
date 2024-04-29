@@ -3,7 +3,6 @@
 #imports tkinter/customtkinter
 import customtkinter
 import tkinter
-
 import mysql.connector
 from tkinter import messagebox
  
@@ -70,26 +69,25 @@ def widthrawl():
     connection.close() 
 
 # gives user their balance
-def checkBal():
-    connection = mysql.connector.connect(user = 'root', database = 'banking', password = 'SQLroot@23096')
-    cursor = connection.cursor()
-    addData = (SELECT Balance FROM money)
-    messagebox.showinfo("Information", "Your Balance is " + addData)
-    cursor.execute(addData)
-    connection.commit()
-    cursor.close()
-    connection.close() 
+# def checkBal():
+#     connection = mysql.connector.connect(user = 'root', database = 'banking', password = 'SQLroot@23096')
+#     cursor = connection.cursor()
+#     messagebox.showinfo("Information", "Your Balance is " + )
+#     cursor.execute()
+#     connection.commit()
+#     cursor.close()
+#     connection.close() 
     
 
 # creates buttons 
 newAcctbutton = customtkinter.CTkButton(app, text="Create Account", command=newAcct)
 depositButton = customtkinter.CTkButton(app, text="Deposit", command=deposit)
 widthrawlButton = customtkinter.CTkButton(app, text="Widtrawl", command=widthrawl)
-checkBalButton = customtkinter.CTkButton(app, text="Check Balance", command=checkBal)
+# checkBalButton = customtkinter.CTkButton(app, text="Check Balance", command=checkBal)
 newAcctbutton.grid(row=0, column=0, padx=20, pady=20, )
 depositButton.grid(row=1, column=0, padx=15, pady=15)
 widthrawlButton.grid(row=2, column=0, padx=10, pady=10)
-checkBalButton.grid(row=3, column=0, padx=5, pady=5)
+# checkBalButton.grid(row=3, column=0, padx=5, pady=5)
 
 app.grid_columnconfigure(0, weight=1)
 
