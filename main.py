@@ -23,7 +23,9 @@ def newAcct():
     email = email.get_input()
     password = customtkinter.CTkInputDialog(text="Enter Password(Must contain Symbols and must be 8 characters long): ", title="Account Creation")
     password = password.get_input() 
-
+    if len(password) < 8:
+        messagebox.showinfo("Password", "Need to be longer. Try again")
+        
     # Puts inputs into SQL
     connection = mysql.connector.connect(user = 'root', database = 'banking', password = 'SQLroot@23096')
 
@@ -40,13 +42,13 @@ def newAcct():
 def deposit():
     deposit = customtkinter.CTkInputDialog(text="How much would you like to deposit? :", title="Deposit")
     deposit = deposit.get_input()
-    messagebox.showinfo("Information", "You have deposited " + deposit)
+    messagebox.showinfo("Information", "You have deposited $" + deposit)
 
     connection = mysql.connector.connect(user = 'root', database = 'banking', password = 'SQLroot@23096')
 
     cursor = connection.cursor()
 
-    addData = ("INSERT INTO balance(Balance) VALUES ('"+ deposit +"')")
+    addData = ("INSERT INTO money(Balance) VALUES ('"+ deposit +"')")
     cursor.execute(addData)
     connection.commit()
     cursor.close()
@@ -56,13 +58,13 @@ def deposit():
 def widthrawl():
     widthrawl = customtkinter.CTkInputDialog(text="How much would you like to widthdraw? :", title="Widthrawl")
     widthrawl = widthrawl.get_input()
-    messagebox.showinfo("Information", "You have widthdrawn " + widthrawl)
+    messagebox.showinfo("Information", "You have widthdrawn $" + widthrawl)
 
     connection = mysql.connector.connect(user = 'root', database = 'banking', password = 'SQLroot@23096')
 
     cursor = connection.cursor()
 
-    addData = ("INSERT INTO balance(Widthrawl) VALUES ('" + widthrawl +"')")
+    addData = ("INSERT INTO money(Widthrawl) VALUES ('" + widthrawl +"')")
     cursor.execute(addData)
     connection.commit()
     cursor.close()
